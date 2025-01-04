@@ -5,9 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float inputH;
+
+    [Header("MovementSystem")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpForceValue;
+    [SerializeField] private Transform feetPosition;
+    [SerializeField] private LayerMask whatIsJumpable;
+    [SerializeField] private float maxNearFloor;
+    private float inputH;
+
+    [Header("Combat System")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private LayerMask whatIsDamageable;
+    [SerializeField] private float attackPower;
+
     private Animator anim;
 
 
@@ -26,13 +38,13 @@ public class Player : MonoBehaviour
     {
         MovementLogic();
         JumpingLogic();
-        AttackLogic();
+        AttackAnimation();
     }
 
 
 
 
-    private void AttackLogic()
+    private void AttackAnimation()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -40,19 +52,33 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    //executed by animation event
+    private void Attack()
+    {
+        Collider2D[] touchedColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsDamageable);
+        foreach (Collider2D enemy in touchedColliders)
+        {
+            LifeSystem playerLifes = enemy.gameObject.GetComponent<LifeSystem>();
+            playerLifes.TakeDamage(attackPower);
+        }
+    }
 
 
     private void JumpingLogic()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && OnTheFloor())
         {
             rb.AddForce(Vector2.up * jumpForceValue, ForceMode2D.Impulse);
             anim.SetTrigger("Jump");
         }
     }
 
-
+    //checks if player is on the floor
+    private bool OnTheFloor()
+    {
+        bool floor = Physics2D.Raycast(feetPosition.position, Vector3.down, maxNearFloor, whatIsJumpable);
+        return floor;
+    }
 
 
     private void MovementLogic()
@@ -76,5 +102,10 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("Running", false);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(attackPoint.position, attackRadius);
     }
 }

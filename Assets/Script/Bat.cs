@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour
+public class Bat : MonoBehaviour
 {
     [SerializeField] private Transform[] movementPoints;
     [SerializeField] private float patrolSpeed;
@@ -19,7 +19,7 @@ public class Slime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -43,7 +43,7 @@ public class Slime : MonoBehaviour
     private void defineDestination()
     {
         currentIndex++;
-        if(currentIndex >= movementPoints.Length)
+        if (currentIndex >= movementPoints.Length)
         {
             currentIndex = 0;
         }
@@ -53,7 +53,7 @@ public class Slime : MonoBehaviour
 
     private void FocusOnDestination()
     {
-        if(currentDestination.x > transform.position.x)
+        if (currentDestination.x > transform.position.x)
         {
             transform.localScale = Vector3.one;
         }
