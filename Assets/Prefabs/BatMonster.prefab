@@ -462,7 +462,7 @@ MonoBehaviour:
   - {fileID: 2486182851077855574}
   - {fileID: 8100844339887042355}
   patrolSpeed: 3
-  attackDamage: 0
+  attackDamage: 10
 --- !u!95 &2833236257203381779
 Animator:
   serializedVersion: 5

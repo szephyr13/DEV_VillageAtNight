@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask whatIsDamageable;
     [SerializeField] private float attackPower;
+    [SerializeField] private GameObject lifeUI;
+    [SerializeField] private GameObject lifeUIFill;
 
     private Animator anim;
 
@@ -29,6 +32,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        UpdateLifes(this.gameObject.GetComponent<LifeSystem>().lifes);
     }
 
 
@@ -41,7 +46,25 @@ public class Player : MonoBehaviour
         AttackAnimation();
     }
 
-
+    public void UpdateLifes(float lifes)
+    {
+        lifeUI.GetComponent<Slider>().value = lifes;
+        if (lifes > 50)
+        {
+            lifeUIFill.GetComponent<Image>().color = Color.green;
+        }
+        else if (lifes <= 50 && lifes > 25)
+        {
+            lifeUIFill.GetComponent<Image>().color = Color.yellow;
+        }
+        else if (lifes <= 25 && lifes > 0)
+        {
+            lifeUIFill.GetComponent<Image>().color = Color.red;
+        } else if (lifes <= 0)
+        {
+            lifeUIFill.GetComponent<Image>().color = Color.black;
+        }
+    }
 
 
     private void AttackAnimation()

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 670770969001631838}
   - component: {fileID: 1975712469416693823}
   - component: {fileID: 2066968649406669970}
+  - component: {fileID: 7364439423944194723}
   m_Layer: 6
   m_Name: Wizard
   m_TagString: Untagged
@@ -203,6 +204,21 @@ MonoBehaviour:
   spawnPoint: {fileID: 6268337759899498359}
   attackPauseTiming: 2
   attackPower: 20
+--- !u!114 &7364439423944194723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215237013128669625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de530d2e4b1a4a23a873f02bcfb85e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementPoints: []
+  patrolSpeed: 0
+  attackDamage: 10
 --- !u!1 &255041892745346134
 GameObject:
   m_ObjectHideFlags: 0
