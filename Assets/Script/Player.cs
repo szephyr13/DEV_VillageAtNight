@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     private void AttackAnimation()
     {
         if (Input.GetMouseButtonDown(0))
-        {
+        { 
             anim.SetTrigger("Attack");
         }
     }
@@ -78,11 +78,15 @@ public class Player : MonoBehaviour
     //executed by animation event
     private void Attack()
     {
+        AudioManager.instance.PlaySFX("KunoichiAttack");
         Collider2D[] touchedColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsDamageable);
         foreach (Collider2D enemy in touchedColliders)
         {
-            LifeSystem playerLifes = enemy.gameObject.GetComponent<LifeSystem>();
-            playerLifes.TakeDamage(attackPower);
+            if (enemy.gameObject.CompareTag("Enemy"))
+            {
+                LifeSystem playerLifes = enemy.gameObject.GetComponent<LifeSystem>();
+                playerLifes.TakeDamage(attackPower);
+            }
         }
     }
 
@@ -91,6 +95,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && OnTheFloor())
         {
+            AudioManager.instance.PlaySFX("KunoichiJump");
             rb.AddForce(Vector2.up * jumpForceValue, ForceMode2D.Impulse);
             anim.SetTrigger("Jump");
         }
