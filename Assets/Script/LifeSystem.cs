@@ -32,12 +32,23 @@ public class LifeSystem : MonoBehaviour
         lifes -= damage;
         if (lifes <= 0)
         {
-            Destroy(this.gameObject);
+            DeathManagement();
         }
 
         if (gameObject.CompareTag("PlayerHitbox"))
         {
             gameObject.GetComponent<Player>().UpdateLifes(lifes);
+        }
+    }
+
+    public void DeathManagement()
+    {
+        if (this.gameObject.CompareTag("PlayerHitbox"))
+        {
+            FindAnyObjectByType<UIManager>().YouLost();
+        } else
+        {
+            Destroy(gameObject);
         }
     }
 

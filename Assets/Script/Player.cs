@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 
     private void AttackAnimation()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.X))
         { 
             anim.SetTrigger("Attack");
         }
@@ -135,5 +135,19 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(attackPoint.position, attackRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BossEvent"))
+        {
+            AudioManager.instance.PlayBGM("Boss");
+            Destroy(collision);
+        }
+        else if (collision.CompareTag("YouWon"))
+        {
+
+            FindAnyObjectByType<UIManager>().YouWon();
+        }
     }
 }
