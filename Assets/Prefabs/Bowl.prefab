@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7385410750769611425}
   - component: {fileID: 122111395776316296}
   - component: {fileID: 8431404609223574352}
+  - component: {fileID: 4922293346752244270}
   m_Layer: 0
   m_Name: Bowl
-  m_TagString: PowerUp-Bowl
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +150,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.64, y: 0.64}
   m_Direction: 0
+--- !u!114 &4922293346752244270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110775815659829171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869011b9f8bcc45aaad2c02af1dbbee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowlHUD: {fileID: 0}
+  uiManager: {fileID: 0}
+  infoText: 
+  player: {fileID: 0}
 --- !u!1 &3505367018696183545
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,7 +81,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerDetection"))
         {
-            Debug.Log("Player detectado");
+            //Debug.Log("Player detectado");
         }
         else if (collision.gameObject.CompareTag("PlayerHitbox"))
         {

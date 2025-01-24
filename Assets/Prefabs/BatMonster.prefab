@@ -497,3 +497,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifes: 20
+  droppingRatio: 5
+  droppingPrefab: {fileID: 5875911915472314087, guid: bba41197074834c3b8d933302a59560a, type: 3}

@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 public class LifeSystem : MonoBehaviour
 {
     [SerializeField] private float lifes;
+    [SerializeField] private int droppingRatio;
+    [SerializeField] private GameObject droppingPrefab;
+    private int droppingDice;
 
     private SpriteRenderer myImage;
     private int currentColor;
@@ -55,6 +58,12 @@ public class LifeSystem : MonoBehaviour
         }
         if (this.gameObject.CompareTag("Enemy"))
         {
+            droppingDice = Random.Range(0, droppingRatio);
+            if (droppingDice == 1)
+            {
+                
+                Instantiate(droppingPrefab, this.gameObject.transform.position, Quaternion.identity);
+            }
             GameObject killedEnemy = this.gameObject.transform.parent.gameObject;
             killedEnemy.transform.parent.gameObject.GetComponent<Spawner>().EnemyCounter--;
             Destroy(killedEnemy);

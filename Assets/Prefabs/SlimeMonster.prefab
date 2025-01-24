@@ -267,6 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifes: 60
+  droppingRatio: 10
+  droppingPrefab: {fileID: 5875911915472314087, guid: bba41197074834c3b8d933302a59560a, type: 3}
 --- !u!1 &7025026496223382929
 GameObject:
   m_ObjectHideFlags: 0

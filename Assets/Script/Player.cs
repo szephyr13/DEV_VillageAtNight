@@ -13,7 +13,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform feetPosition;
     [SerializeField] private LayerMask whatIsJumpable;
     [SerializeField] private float maxNearFloor;
+    [SerializeField] private bool canDoubleJump;
+    [SerializeField] private float jumpDelay;
     private float inputH;
+    private bool doubleJumpSkill;
+    private bool canOpenDoor;
 
     [Header("Combat System")]
     [SerializeField] private Transform attackPoint;
@@ -25,6 +29,10 @@ public class Player : MonoBehaviour
 
     private Animator anim;
 
+    public bool DoubleJumpSkill { get => doubleJumpSkill; set => doubleJumpSkill = value; }
+    public bool CanOpenDoor { get => canOpenDoor; set => canOpenDoor = value; }
+    public float AttackPower { get => attackPower; set => attackPower = value; }
+
 
 
     // Start is called before the first frame update
@@ -32,7 +40,9 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        doubleJumpSkill = false;
+        canOpenDoor = false;
+        canDoubleJump = false;
         UpdateLifes(this.gameObject.GetComponent<LifeSystem>().Lifes);
     }
 
@@ -98,6 +108,17 @@ public class Player : MonoBehaviour
             AudioManager.instance.PlaySFX("KunoichiJump");
             rb.AddForce(Vector2.up * jumpForceValue, ForceMode2D.Impulse);
             anim.SetTrigger("Jump");
+            if (doubleJumpSkill)
+            {
+                canDoubleJump = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump)
+        {
+            AudioManager.instance.PlaySFX("KunoichiJump");
+            rb.AddForce(Vector2.up * jumpForceValue/3*2, ForceMode2D.Impulse);
+            anim.SetTrigger("Jump");
+            canDoubleJump = false;
         }
     }
 
@@ -105,6 +126,10 @@ public class Player : MonoBehaviour
     private bool OnTheFloor()
     {
         bool floor = Physics2D.Raycast(feetPosition.position, Vector3.down, maxNearFloor, whatIsJumpable);
+        if (floor == true)
+        {
+            canDoubleJump = false;
+        }
         return floor;
     }
 
@@ -148,6 +173,10 @@ public class Player : MonoBehaviour
         {
 
             FindAnyObjectByType<UIManager>().YouWon();
+        } else if (collision.CompareTag("Item"))
+        {
+            AudioManager.instance.PlaySFX("PowerUp");
+            collision.gameObject.GetComponent<IInteractuable>().Interact();
         }
     }
 }

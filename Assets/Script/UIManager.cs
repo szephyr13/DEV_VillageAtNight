@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject sourceBGM;
     [SerializeField] private TextManager introManager;
     [SerializeField] private TextManager endManager;
+    [SerializeField] private TextMeshProUGUI screenMessage;
 
     private int gameMode;
 
@@ -87,6 +89,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void showUIText(string text)
+    {
+        screenMessage.text = text;
+    }
+
 
 
     public void ResetGame()
@@ -143,14 +150,6 @@ public class UIManager : MonoBehaviour
         AudioManager.instance.PlayBGM("Game");
         introScreen.SetActive(false);
         gameMode = 2;
-        Time.timeScale = 1f;
-    }
-
-
-    public void Resume()
-    {
-        AudioManager.instance.PlaySFX("UISelect");
-        pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
 
