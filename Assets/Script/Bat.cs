@@ -18,4 +18,6 @@ public class Bat : Enemy
     {
         base.StopChasing();
     }
+
+    
 }

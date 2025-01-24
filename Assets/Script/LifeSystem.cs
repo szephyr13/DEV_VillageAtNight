@@ -8,6 +8,7 @@ public class LifeSystem : MonoBehaviour
     [SerializeField] private float lifes;
     [SerializeField] private int droppingRatio;
     [SerializeField] private GameObject droppingPrefab;
+    [SerializeField] private Animator anim;
     private int droppingDice;
 
     private SpriteRenderer myImage;
@@ -52,21 +53,20 @@ public class LifeSystem : MonoBehaviour
         if (this.gameObject.CompareTag("PlayerHitbox"))
         {
             FindAnyObjectByType<UIManager>().YouLost();
-        } else
-        {
-            Destroy(gameObject);
         }
+
         if (this.gameObject.CompareTag("Enemy"))
         {
             droppingDice = Random.Range(0, droppingRatio);
             if (droppingDice == 1)
             {
-                
                 Instantiate(droppingPrefab, this.gameObject.transform.position, Quaternion.identity);
             }
+            this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             GameObject killedEnemy = this.gameObject.transform.parent.gameObject;
             killedEnemy.transform.parent.gameObject.GetComponent<Spawner>().EnemyCounter--;
-            Destroy(killedEnemy);
+            anim.SetBool("death", true);
+
         }
     }
 

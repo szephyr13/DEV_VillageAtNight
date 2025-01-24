@@ -91,7 +91,14 @@ public class UIManager : MonoBehaviour
 
     public void showUIText(string text)
     {
+        StartCoroutine(textInterface(text));
+    }
+
+    private IEnumerator textInterface(string text)
+    {
         screenMessage.text = text;
+        yield return new WaitForSeconds(5f);
+        screenMessage.text = "";
     }
 
 

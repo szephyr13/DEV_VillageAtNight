@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7181926284075770232}
+  - component: {fileID: 8247716859219145109}
   m_Layer: 0
   m_Name: SlimeMonster
   m_TagString: Untagged
@@ -33,6 +34,27 @@ Transform:
   - {fileID: 8157737807791909999}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8247716859219145109
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588553070039630748}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87294f219fd178c46ad384c0b63c19e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2446144973869520078
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +291,7 @@ MonoBehaviour:
   lifes: 60
   droppingRatio: 10
   droppingPrefab: {fileID: 5875911915472314087, guid: bba41197074834c3b8d933302a59560a, type: 3}
+  anim: {fileID: 7331202893456904546}
 --- !u!1 &7025026496223382929
 GameObject:
   m_ObjectHideFlags: 0

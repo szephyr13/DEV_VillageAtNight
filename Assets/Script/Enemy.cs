@@ -9,6 +9,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float attackDamage;
     private Vector3 currentDestination;
     private int currentIndex = 0;
+
+    public float AttackDamage { get => attackDamage; set => attackDamage = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +78,10 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
+    private void DestroyEnemy()
+    {
+        this.gameObject.transform.parent.gameObject.SetActive(false);
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
