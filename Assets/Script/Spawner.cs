@@ -10,10 +10,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private float timeBetweenSpawns;
     [SerializeField] private int enemyLimit;
-    [SerializeField] public int enemyCounter;
+    [SerializeField] private int enemyCounter;
 
     private float timer;
 
+    public int EnemyCounter { get => enemyCounter; set => enemyCounter = value; }
 
     void Update()
     {
@@ -28,10 +29,11 @@ public class Spawner : MonoBehaviour
             if (enemyCounter < enemyLimit)
             {
                 Vector3 nextSpawnPosition = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
-                GameObject enemyCopy = Instantiate(enemyPrefab, nextSpawnPosition, Quaternion.identity);
+                GameObject enemyCopy = Instantiate(enemyPrefab, nextSpawnPosition, Quaternion.identity, this.gameObject.transform);
                 enemyCounter++;
             }
             timer = 0;
         }
+
     }
 }

@@ -5,16 +5,19 @@ using UnityEngine.UIElements;
 
 public class LifeSystem : MonoBehaviour
 {
-    [SerializeField] public float lifes;
+    [SerializeField] private float lifes;
 
     private SpriteRenderer myImage;
     private int currentColor;
     private int colorChangesCounter;
 
+    public float Lifes { get => lifes; set => lifes = value; }
+
     private void Start()
     {
         myImage = this.gameObject.GetComponent<SpriteRenderer>();
         currentColor = 0;
+        colorChangesCounter = 6;
     }
 
     public void TakeDamage(float damage)
@@ -41,7 +44,7 @@ public class LifeSystem : MonoBehaviour
         }
     }
 
-    public void DeathManagement()
+    private void DeathManagement()
     {
         if (this.gameObject.CompareTag("PlayerHitbox"))
         {
@@ -50,11 +53,17 @@ public class LifeSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (this.gameObject.CompareTag("Enemy"))
+        {
+            GameObject killedEnemy = this.gameObject.transform.parent.gameObject;
+            killedEnemy.transform.parent.gameObject.GetComponent<Spawner>().EnemyCounter--;
+            Destroy(killedEnemy);
+        }
     }
 
     IEnumerator ColorVisualFeedback()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < colorChangesCounter; i++)
         {
             if (currentColor == 0)
             {

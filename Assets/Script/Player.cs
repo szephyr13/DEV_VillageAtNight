@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        UpdateLifes(this.gameObject.GetComponent<LifeSystem>().lifes);
+        UpdateLifes(this.gameObject.GetComponent<LifeSystem>().Lifes);
     }
 
 

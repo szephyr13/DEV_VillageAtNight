@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - BossEvent
   - YouWon
+  - PowerUp-Bowl
+  - PowerUp-Potion
+  - PowerUp-Foot
+  - Item-Key
   layers:
   - Default
   - TransparentFX

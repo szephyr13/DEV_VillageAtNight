@@ -9,12 +9,12 @@ using UnityEngine.SceneManagement;
 public class TextManager : MonoBehaviour
 {
     private Queue<string> introduction;
-    [SerializeField] public Text text;
+    [SerializeField] private Text text;
     [SerializeField] private TextMeshProUGUI intro;
     [SerializeField] private bool typingOver;
     [SerializeField] private GameObject generalManager;
 
-
+    public Text Text { get => text; set => text = value; }
 
     public void StartDialogue()
     {
@@ -62,7 +62,7 @@ public class TextManager : MonoBehaviour
     }
 
 
-    void EndDialogue()
+    private void EndDialogue()
     {
         StopAllCoroutines();
         intro.text = "";

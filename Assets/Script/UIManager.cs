@@ -16,7 +16,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextManager introManager;
     [SerializeField] private TextManager endManager;
 
-    public int gameMode;
+    private int gameMode;
+
+    public int GameMode { get => gameMode; set => gameMode = value; }
 
     void Start()
     {

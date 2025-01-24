@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform[] movementPoints;
     [SerializeField] private float patrolSpeed;
@@ -62,6 +62,20 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+
+
+    protected abstract void AttackSystem();
+
+    protected virtual void PlayerChase()
+    {
+
+    }
+    protected virtual void StopChasing()
+    {
+
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] public Sound[] bgmAudio;
-    [SerializeField] public Sound[] sfxAudio;
-    [SerializeField] public AudioSource bgmSource;
-    [SerializeField] public AudioSource sfxSource;
+    [SerializeField] private Sound[] bgmAudio;
+    [SerializeField] private Sound[] sfxAudio;
+    [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private AudioSource sfxSource;
 
-    [SerializeField] public static AudioManager instance;
+    public static AudioManager instance;
 
 
     //instance in order to load this script info from anywhere
