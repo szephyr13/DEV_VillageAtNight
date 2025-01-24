@@ -11,6 +11,7 @@ public class Bowl : MonoBehaviour, IInteractuable
 
     public void Interact()
     {
+        AudioManager.instance.PlaySFX("PowerUp");
         player.AttackPower *= 1.5f;
         bowlHUD.color = Color.white;
         uiManager.showUIText(infoText);

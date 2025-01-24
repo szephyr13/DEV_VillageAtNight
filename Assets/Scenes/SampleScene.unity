@@ -91123,7 +91123,7 @@ GameObject:
   - component: {fileID: 901272609}
   m_Layer: 0
   m_Name: door
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91192,7 +91192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedPosition: {fileID: 1513678734}
   openPosition: {fileID: 1420136556}
-  speed: 0
+  speed: 5
   player: {fileID: 913301071}
 --- !u!61 &901272611
 BoxCollider2D:
@@ -91231,7 +91231,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.8333333, y: 3.5555556}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.3, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -94277,6 +94277,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 5d5c6186288a54f0ba189e2dfadfc95b, type: 3}
   - audioName: PowerUp
     audioClip: {fileID: 8300000, guid: 024581ae3ca82490dba20dcc3fb15a3f, type: 3}
+  - audioName: OpenDoor
+    audioClip: {fileID: 8300000, guid: 9491e95d4f4f54742b04dddf331e09f2, type: 3}
   bgmSource: {fileID: 1379345915}
   sfxSource: {fileID: 1177745808}
 --- !u!4 &1468590496
@@ -95230,7 +95232,7 @@ Transform:
   m_GameObject: {fileID: 1755434721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.44, y: -31.5, z: 0}
+  m_LocalPosition: {x: -4.41, y: -31.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -12,6 +12,7 @@ public class Foot : MonoBehaviour, IInteractuable
 
     public void Interact()
     {
+        AudioManager.instance.PlaySFX("PowerUp");
         player.DoubleJumpSkill = true;
         footHUD.color = Color.white;
         uiManager.showUIText(infoText);

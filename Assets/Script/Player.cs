@@ -173,9 +173,9 @@ public class Player : MonoBehaviour
         {
 
             FindAnyObjectByType<UIManager>().YouWon();
-        } else if (collision.CompareTag("Item"))
+        }
+        else if (collision.CompareTag("Item"))
         {
-            AudioManager.instance.PlaySFX("PowerUp");
             collision.gameObject.GetComponent<IInteractuable>().Interact();
         }
     }

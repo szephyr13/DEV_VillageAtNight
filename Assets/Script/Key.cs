@@ -11,6 +11,7 @@ public class Key : MonoBehaviour, IInteractuable
 
     public void Interact()
     {
+        AudioManager.instance.PlaySFX("PowerUp");
         player.CanOpenDoor = true;
         keyHUD.color = Color.white;
         uiManager.showUIText(infoText);

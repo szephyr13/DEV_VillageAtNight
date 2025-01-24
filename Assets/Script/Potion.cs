@@ -14,6 +14,7 @@ public class Potion : MonoBehaviour, IInteractuable
 
     public void Interact()
     {
+        AudioManager.instance.PlaySFX("PowerUp");
         player.UpdateLifes(player.GetComponent<LifeSystem>().Lifes + 15);
         Destroy(this.gameObject);
     }

@@ -8,32 +8,35 @@ public class Door : MonoBehaviour, IInteractuable
     [SerializeField] private Transform openPosition;
     [SerializeField] private float speed;
     [SerializeField] private Player player;
+    private bool orderOpenDoor;
 
-
+    private void Start()
+    {
+        orderOpenDoor = false;
+    }
 
 
     public void Interact()
     {
-        Debug.Log(player.CanOpenDoor);
-        if (player.CanOpenDoor)
+        orderOpenDoor = true;
+        if (player.CanOpenDoor && orderOpenDoor == true)
         {
+            AudioManager.instance.PlaySFX("OpenDoor");
             StartCoroutine(OpenDoor());
         }
     }
 
-    private IEnumerator OpenDoor()
+
+    IEnumerator OpenDoor()
     {
-        while (true)
+        
+        while (transform.position != openPosition.position)
         {
-            while (transform.position != openPosition.position)
-            {
-                Debug.Log("Opening door");
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    openPosition.position,
-                    speed * Time.deltaTime);
-                yield return null;
-            }
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                openPosition.position,
+                speed * Time.deltaTime);
+            yield return null;
         }
     }
 
