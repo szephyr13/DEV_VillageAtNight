@@ -517,8 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 1.5
   attackSpeed: 10
-  attackDamage: 10
-  attackPoint: {fileID: 1646314501525862212}
+  attackDamage: 5
   timeBetweenAttacks: 2
 --- !u!114 &1697955533246427979
 MonoBehaviour:

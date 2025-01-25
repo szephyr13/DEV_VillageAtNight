@@ -24,12 +24,11 @@ public class Door : MonoBehaviour, IInteractuable
             AudioManager.instance.PlaySFX("OpenDoor");
             StartCoroutine(OpenDoor());
         }
-    }
+}
 
 
     IEnumerator OpenDoor()
     {
-        
         while (transform.position != openPosition.position)
         {
             transform.position = Vector3.MoveTowards(

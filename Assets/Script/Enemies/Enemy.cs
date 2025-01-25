@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-
+    //by animation
     private void DestroyEnemy()
     {
         Destroy(this.gameObject.transform.parent.gameObject);

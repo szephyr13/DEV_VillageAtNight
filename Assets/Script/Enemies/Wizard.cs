@@ -4,37 +4,39 @@ using UnityEngine;
 
 public class Wizard : MonoBehaviour
 {
+    private Transform target;
     [SerializeField] private GameObject fireBall;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float attackPauseTiming;
-    [SerializeField] private float attackPower;
     private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        StartCoroutine(AttackRoutine());
+        anim = GetComponent<Animator>(); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    IEnumerator AttackRoutine()
-    {
-        while (true)
-        {
-            anim.SetTrigger("atacar");
-            yield return new WaitForSeconds(attackPauseTiming);
-        }
-    }
 
     //called by animator
     private void fireBallLaunching()
     {
         Instantiate(fireBall, spawnPoint.position, transform.rotation);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        target = collision.transform;
+        if (collision.gameObject.CompareTag("PlayerDetection"))
+        {
+            anim.SetBool("attack", true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerDetection"))
+        {
+            anim.SetBool("attack", false);
+        }
+    }
+
 }

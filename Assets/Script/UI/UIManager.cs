@@ -107,7 +107,11 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("UISelect");
         AudioManager.instance.PlayBGM("Menu");
-        sourceBGM.GetComponent<AudioLowPassFilter>().cutoffFrequency = 5007.7f;
+        if (sourceBGM.GetComponent<AudioLowPassFilter>().cutoffFrequency != 5007.7f)
+        {
+            sourceBGM.GetComponent<AudioLowPassFilter>().cutoffFrequency = 5007.7f;
+        }
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameMode = 0;
         Time.timeScale = 1f;

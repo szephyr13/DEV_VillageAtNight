@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private float inputH;
     private bool doubleJumpSkill;
     private bool canOpenDoor;
+    private bool ghoulIsDead;
 
     [Header("Combat System")]
     [SerializeField] private Transform attackPoint;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     public bool CanOpenDoor { get => canOpenDoor; set => canOpenDoor = value; }
     public float AttackPower { get => attackPower; set => attackPower = value; }
     public bool Untouchable { get => untouchable; set => untouchable = value; }
+    public bool GhoulIsDead { get => ghoulIsDead; set => ghoulIsDead = value; }
 
 
 
@@ -42,10 +44,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         doubleJumpSkill = false;
-        canOpenDoor = false;
+        canOpenDoor = true;
         canDoubleJump = false;
         UpdateLifes(this.gameObject.GetComponent<LifeSystem>().Lifes);
         untouchable = false;
+        ghoulIsDead = false;
     }
 
 
@@ -61,7 +64,11 @@ public class Player : MonoBehaviour
     public void UpdateLifes(float lifes)
     {
         lifeUI.GetComponent<Slider>().value = lifes;
-        if (lifes > 50)
+        if (lifes > 100)
+        {
+            lifeUIFill.GetComponent<Image>().color = Color.cyan;
+        }
+        else if (lifes <=100 && lifes > 50)
         {
             lifeUIFill.GetComponent<Image>().color = Color.green;
         }
@@ -168,7 +175,7 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("BossEvent"))
         {
-            AudioManager.instance.PlayBGM("Boss");
+            AudioManager.instance.StopMusic();
             Destroy(collision);
         }
         else if (collision.CompareTag("YouWon"))
@@ -178,7 +185,15 @@ public class Player : MonoBehaviour
         }
         else if (collision.CompareTag("Item"))
         {
+            Debug.Log("interacting with " + collision.gameObject.name);
             collision.gameObject.GetComponent<IInteractuable>().Interact();
+        }
+        else if (collision.CompareTag("Door"))
+        {
+            if (ghoulIsDead)
+            {
+                collision.gameObject.GetComponent<IInteractuable>().Interact();
+            }
         }
     }
 }

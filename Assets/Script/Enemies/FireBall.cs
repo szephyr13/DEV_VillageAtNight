@@ -6,16 +6,35 @@ public class FireBall : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] private float shootImpulse;
-    // Start is called before the first frame update
+    [SerializeField] private float lifeSpan;
+    [SerializeField] private float attackDamage;
+
+    [SerializeField] private float timer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * shootImpulse, ForceMode2D.Impulse);
+        timer = 0f;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer > lifeSpan)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerHitbox"))
+        {
+            LifeSystem playerLifes = collision.gameObject.GetComponent<LifeSystem>();
+            playerLifes.TakeDamage(attackDamage);
+            Destroy(this.gameObject);
+        }
     }
 }

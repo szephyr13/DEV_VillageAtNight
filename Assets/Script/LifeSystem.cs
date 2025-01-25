@@ -67,8 +67,22 @@ public class LifeSystem : MonoBehaviour
                 Instantiate(droppingPrefab, this.gameObject.transform.position, Quaternion.identity);
             }
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            GameObject killedEnemy = this.gameObject.transform.parent.gameObject;
-            killedEnemy.transform.parent.gameObject.GetComponent<Spawner>().EnemyCounter--;
+            
+            if (this.gameObject.name != "Wizard" && this.gameObject.name != "Ghoul")
+            {
+                GameObject killedEnemy = this.gameObject.transform.parent.gameObject;
+                killedEnemy.transform.parent.gameObject.GetComponent<Spawner>().EnemyCounter--;
+            } else
+            {
+            }
+            
+            if (this.gameObject.name == "Ghoul")
+            {
+                Destroy(this.gameObject.GetComponent<CircleCollider2D>());
+                AudioManager.instance.PlaySFX("BossPresentation");
+                AudioManager.instance.StopMusic();
+                FindAnyObjectByType<Player>().GhoulIsDead = true;
+            }
             anim.SetBool("death", true);
 
         }
