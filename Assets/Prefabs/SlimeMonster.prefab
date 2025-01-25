@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7181926284075770232}
   - component: {fileID: 8247716859219145109}
-  - component: {fileID: 5536972818715631946}
   m_Layer: 0
   m_Name: SlimeMonster
   m_TagString: Untagged
@@ -56,18 +55,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5536972818715631946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588553070039630748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de530d2e4b1a4a23a873f02bcfb85e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2446144973869520078
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,14 +99,11 @@ GameObject:
   - component: {fileID: 7331202893456904546}
   - component: {fileID: 2187501808750050943}
   - component: {fileID: 2915795329638544266}
-<<<<<<< HEAD
+  - component: {fileID: 2218595379368836318}
   - component: {fileID: 1171615774384382626}
   - component: {fileID: 5555066827257902555}
   - component: {fileID: 6171379655948914719}
   - component: {fileID: 3648690347674269454}
-=======
-  - component: {fileID: 2218595379368836318}
->>>>>>> parent of 5d4a6bd (machine state)
   - component: {fileID: 3463383075323398245}
   m_Layer: 6
   m_Name: Slime
@@ -279,11 +263,7 @@ CircleCollider2D:
   m_Offset: {x: 0.05212307, y: -0.30622375}
   serializedVersion: 2
   m_Radius: 0.4698372
-<<<<<<< HEAD
---- !u!114 &1171615774384382626
-=======
 --- !u!114 &2218595379368836318
->>>>>>> parent of 5d4a6bd (machine state)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,7 +272,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3370001120029269262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
+  m_Script: {fileID: 11500000, guid: 9d9afa1d05b9b492394ebb9f1d46b0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1171615774384382626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370001120029269262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85b9d898656174cb6b4d487db8c99463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -323,16 +314,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   route: {fileID: 8157737807791909999}
-=======
-  m_Script: {fileID: 11500000, guid: 9d9afa1d05b9b492394ebb9f1d46b0af, type: 3}
+  patrolSpeed: 2
+--- !u!114 &3648690347674269454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370001120029269262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31edbb07d813b4621991945fddedde52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementPoints:
-  - {fileID: 916310973239963796}
-  - {fileID: 794463187028854763}
->>>>>>> parent of 5d4a6bd (machine state)
-  patrolSpeed: 2
-  attackDamage: 20
+  attackDistance: 1.5
+  attackSpeed: 5
+  attackDamage: 15
+  timeBetweenAttacks: 0
 --- !u!114 &3463383075323398245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2802585661691932438}
-  - component: {fileID: 7169468125925271438}
+  - component: {fileID: 8586614224251193339}
   m_Layer: 7
   m_Name: Detection
   m_TagString: Untagged
@@ -445,8 +443,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6741358687191113642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7169468125925271438
-CircleCollider2D:
+--- !u!70 &8586614224251193339
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -477,6 +475,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.26366115, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
+  m_Offset: {x: 1.4701494, y: -0.1379483}
+  m_Size: {x: 2.7496135, y: 0.14329742}
+  m_Direction: 1

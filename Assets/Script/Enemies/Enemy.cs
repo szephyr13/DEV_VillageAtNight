@@ -1,17 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    private ObjectPool<Enemy> myPool;
 
-    public ObjectPool<Enemy> MyPool { get => myPool; set => myPool = value; }
-
-    public void DestroyEnemy()
+    private void DestroyEnemy()
     {
-        MyPool.Release(this);
+        this.gameObject.transform.parent.gameObject.SetActive(false);
     }
-
 }

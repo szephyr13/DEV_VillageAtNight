@@ -26,12 +26,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float attackPower;
     [SerializeField] private GameObject lifeUI;
     [SerializeField] private GameObject lifeUIFill;
+    private bool untouchable;
 
     private Animator anim;
-
     public bool DoubleJumpSkill { get => doubleJumpSkill; set => doubleJumpSkill = value; }
     public bool CanOpenDoor { get => canOpenDoor; set => canOpenDoor = value; }
     public float AttackPower { get => attackPower; set => attackPower = value; }
+    public bool Untouchable { get => untouchable; set => untouchable = value; }
 
 
 
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         canOpenDoor = false;
         canDoubleJump = false;
         UpdateLifes(this.gameObject.GetComponent<LifeSystem>().Lifes);
+        untouchable = false;
     }
 
 
