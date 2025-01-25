@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
-namespace Enemies_Bat
+
+public class Bat : Enemy
 {
-    public class Bat : Enemy
-    {
 
-    }
 }

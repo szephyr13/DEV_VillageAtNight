@@ -3552,7 +3552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239d63a8c61a04e3fa7576df54e114bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1588553070039630748, guid: 0f6cfa3a7a7264ffcbb80b536efbd840, type: 3}
+  enemyPrefab: {fileID: 5375879757205668234, guid: 0f6cfa3a7a7264ffcbb80b536efbd840, type: 3}
   spawnPoints:
   - {fileID: 97667989}
   - {fileID: 527825096}
@@ -70937,8 +70937,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 215.16316, y: -13.140167}
-  m_SizeDelta: {x: 286.1509, y: 22.7992}
+  m_AnchoredPosition: {x: 272.24997, y: -13.140167}
+  m_SizeDelta: {x: 171.9773, y: 22.7992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772933042
 MonoBehaviour:
@@ -71023,7 +71023,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.7196808, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -92192,7 +92192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239d63a8c61a04e3fa7576df54e114bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 5434216168912904517, guid: 6af201c4ecf24414086bb1b116f07248, type: 3}
+  enemyPrefab: {fileID: 8542244086977508128, guid: 6af201c4ecf24414086bb1b116f07248, type: 3}
   spawnPoints:
   - {fileID: 366266124}
   - {fileID: 148620771}
