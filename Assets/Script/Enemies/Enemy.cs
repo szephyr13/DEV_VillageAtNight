@@ -7,6 +7,6 @@ public abstract class Enemy : MonoBehaviour
 
     private void DestroyEnemy()
     {
-        this.gameObject.transform.parent.gameObject.SetActive(false);
+        Destroy(this.gameObject.transform.parent.gameObject);
     }
 }
