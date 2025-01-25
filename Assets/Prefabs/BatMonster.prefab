@@ -162,6 +162,37 @@ Transform:
   - {fileID: 1611399099867619098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5603866528353901579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646314501525862212}
+  m_Layer: 6
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1646314501525862212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5603866528353901579}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.29, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4344212652193832450}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5767710104333542823
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +335,10 @@ GameObject:
   - component: {fileID: 6581856674862207968}
   - component: {fileID: 2392185180903542707}
   - component: {fileID: 584350987660703696}
+  - component: {fileID: 741416958134971323}
+  - component: {fileID: 6948621310561070848}
+  - component: {fileID: 1697955533246427979}
+  - component: {fileID: 4202226623406357097}
   - component: {fileID: 2833236257203381779}
   - component: {fileID: 858005343072849226}
   m_Layer: 6
@@ -327,6 +362,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2383201811004348638}
+  - {fileID: 1646314501525862212}
   m_Father: {fileID: 90024496154842581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1555984523682671168
@@ -455,14 +491,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a066cdb1706e344e4958745be4a82f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementPoints:
-  - {fileID: 8115715291780896654}
-  - {fileID: 4429549988164447800}
-  - {fileID: 2031226128084181430}
-  - {fileID: 2486182851077855574}
-  - {fileID: 8100844339887042355}
-  patrolSpeed: 3
+--- !u!114 &741416958134971323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656749711428916087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b9d898656174cb6b4d487db8c99463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6948621310561070848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656749711428916087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31edbb07d813b4621991945fddedde52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 1.5
+  attackSpeed: 10
   attackDamage: 10
+  attackPoint: {fileID: 1646314501525862212}
+  timeBetweenAttacks: 2
+--- !u!114 &1697955533246427979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656749711428916087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacca19f43dd24d5ebf7a1f9cb82ae13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 3
+  stoppingDistance: 1.5
+--- !u!114 &4202226623406357097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656749711428916087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ff4c01f6c649ba967546fb7f166d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  route: {fileID: 1611399099867619098}
+  patrolSpeed: 1
 --- !u!95 &2833236257203381779
 Animator:
   serializedVersion: 5

@@ -28,23 +28,27 @@ public class LifeSystem : MonoBehaviour
     {
         if (this.gameObject.CompareTag("PlayerHitbox"))
         {
-            AudioManager.instance.PlaySFX("KunoichiDamage");
-        } else if (this.gameObject.CompareTag("Enemy"))
+            if (gameObject.GetComponent<Player>().Untouchable)
+            {
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("KunoichiDamage");
+                lifes -= damage;
+                StartCoroutine(ColorVisualFeedback());
+            }
+            gameObject.GetComponent<Player>().UpdateLifes(lifes);
+        }
+        else if (this.gameObject.CompareTag("Enemy"))
         {
             AudioManager.instance.PlaySFX("EnemyDamage");
+            lifes -= damage;
+            StartCoroutine(ColorVisualFeedback());
         }
 
-        StartCoroutine(ColorVisualFeedback());
-
-        lifes -= damage;
         if (lifes <= 0)
         {
             DeathManagement();
-        }
-
-        if (gameObject.CompareTag("PlayerHitbox"))
-        {
-            gameObject.GetComponent<Player>().UpdateLifes(lifes);
         }
     }
 
@@ -72,18 +76,41 @@ public class LifeSystem : MonoBehaviour
 
     IEnumerator ColorVisualFeedback()
     {
-        for (int i = 0; i < colorChangesCounter; i++)
+        if (this.gameObject.TryGetComponent(out Player player))
         {
-            if (currentColor == 0)
+            player.Untouchable = true;
+            for (int i = 0; i < colorChangesCounter; i++)
             {
-                myImage.color = Color.red;
-                currentColor = 1;
-            } else if (currentColor == 1)
-            {
-                myImage.color = Color.white;
-                currentColor = 0;
+                if (currentColor == 0)
+                {
+                    myImage.color = Color.red;
+                    currentColor = 1;
+                }
+                else if (currentColor == 1)
+                {
+                    myImage.color = Color.white;
+                    currentColor = 0;
+                }
+                yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(0.1f);
+            player.Untouchable = false;
+        }
+        else
+        {
+            for (int i = 0; i < colorChangesCounter; i++)
+            {
+                if (currentColor == 0)
+                {
+                    myImage.color = Color.red;
+                    currentColor = 1;
+                }
+                else if (currentColor == 1)
+                {
+                    myImage.color = Color.white;
+                    currentColor = 0;
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 }
