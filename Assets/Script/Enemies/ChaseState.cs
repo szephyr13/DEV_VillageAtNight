@@ -9,6 +9,7 @@ public class ChaseState : State<EnemyController>
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float stoppingDistance;
 
+    //when entering this state, gets reference of the player, starts the attack animation
     public override void OnEnterState(EnemyController controller)
     {
         base.OnEnterState(controller);
@@ -16,6 +17,8 @@ public class ChaseState : State<EnemyController>
         anim.SetBool("attack", true);
     }
 
+    // every update, the enemy tries to be in the same position as the player (bats on xy axis, slime only on x axis)
+    // - if it gets too near, changes to attack mode
     public override void OnUpdateState()
     {
         if(this.gameObject.name == "Bat")
@@ -40,12 +43,13 @@ public class ChaseState : State<EnemyController>
         }
     }
 
+    //when exiting the state, attack animation sets false
     public override void OnExitState()
     {
         anim.SetBool("attack", false);
     }
 
-
+    //if the enemy loses track of the player, changes to patrol state
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerDetection"))

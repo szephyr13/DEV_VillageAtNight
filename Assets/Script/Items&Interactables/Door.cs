@@ -10,12 +10,14 @@ public class Door : MonoBehaviour, IInteractuable
     [SerializeField] private Player player;
     private bool orderOpenDoor;
 
+    //door starts closed
     private void Start()
     {
         orderOpenDoor = false;
     }
 
 
+    //when interacting, only if player can open doors, starts opening coroutine
     public void Interact()
     {
         orderOpenDoor = true;
@@ -24,9 +26,9 @@ public class Door : MonoBehaviour, IInteractuable
             AudioManager.instance.PlaySFX("OpenDoor");
             StartCoroutine(OpenDoor());
         }
-}
+    }
 
-
+    //opening coroutine gets the door to the open point
     IEnumerator OpenDoor()
     {
         while (transform.position != openPosition.position)

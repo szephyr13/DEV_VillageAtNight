@@ -9,6 +9,8 @@ public class Bowl : MonoBehaviour, IInteractuable
     [SerializeField] private string infoText;
     [SerializeField] private Player player;
 
+    //player's attack x1.5. 
+    // + sound, hud and text. then, destroys.
     public void Interact()
     {
         AudioManager.instance.PlaySFX("PowerUp");

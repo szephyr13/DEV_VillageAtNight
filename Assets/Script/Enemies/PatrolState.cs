@@ -11,6 +11,7 @@ public class PatrolState : State<EnemyController>
     private Vector3 currentDestination;
     private int destinationIndex;
 
+    //when entering the state, gets the patrol points and lists them
     public override void OnEnterState(EnemyController controller)
     {
         base.OnEnterState(controller);
@@ -22,6 +23,7 @@ public class PatrolState : State<EnemyController>
         currentDestination = routeMarks[destinationIndex];
     }
 
+    //moves to the patrol points. when reaching it, changes the patrol point
     public override void OnUpdateState()
     {
         transform.position = Vector3.MoveTowards(
@@ -37,6 +39,7 @@ public class PatrolState : State<EnemyController>
         FocusOnDestination();
     }
 
+    //looks at the destination taking only as reference the x axis. 
     private void FocusOnDestination()
     {
         if (currentDestination.x > transform.position.x)
@@ -49,6 +52,7 @@ public class PatrolState : State<EnemyController>
         }
     }
 
+    //changes the index destination
     private void SetNewDestination()
     {
         destinationIndex++;
@@ -62,6 +66,7 @@ public class PatrolState : State<EnemyController>
 
     }
 
+    //when exiting the state, resets all route points logic
     public override void OnExitState()
     {
         routeMarks.Clear();
@@ -69,6 +74,7 @@ public class PatrolState : State<EnemyController>
 
     }
 
+    //when detecting the player, changes to chase state
     private void OnTriggerEnter2D(Collider2D collision)
     {
         /*if(collision.TryGetComponent(out Player player))

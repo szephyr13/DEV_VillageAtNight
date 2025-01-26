@@ -9,6 +9,8 @@ public class Key : MonoBehaviour, IInteractuable
     [SerializeField] private string infoText;
     [SerializeField] private Player player;
 
+    ////sets bool to let the player open doors
+    // + sound, hud and text. then, destroys.
     public void Interact()
     {
         AudioManager.instance.PlaySFX("PowerUp");

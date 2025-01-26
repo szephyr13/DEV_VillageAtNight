@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public ChaseState ChaseState { get => chaseState; }
     public AttackState AttackState { get => attackState; }
 
-    // Start is called before the first frame update
+    // on start, defines all states and sets the default one
     void Start()
     {
         patrolState = GetComponent<PatrolState>();
@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         ChangeState(patrolState);
     }
 
-    // Update is called once per frame
+    // calls update function on current state
     void Update()
     {
         if (currentState)
@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // manages changing the state on call
     public void ChangeState(State<EnemyController> newState)
     {
         if (currentState)

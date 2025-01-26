@@ -16,12 +16,14 @@ public class Spawner : MonoBehaviour
 
     public int EnemyCounter { get => enemyCounter; set => enemyCounter = value; }
 
+    //updates timer, spawns enemies when meeting conditions
     void Update()
     {
         timer += Time.deltaTime;
         EnemySpawning();
     }
 
+    //if the timer reaches specified time, and if there are not too many enemies, spawns one in a random spawn point
     private void EnemySpawning()
     {
         if (timer > timeBetweenSpawns)

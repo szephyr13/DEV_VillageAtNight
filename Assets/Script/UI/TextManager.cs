@@ -16,6 +16,7 @@ public class TextManager : MonoBehaviour
 
     public Text Text { get => text; set => text = value; }
 
+    //lists text to write on screen and enqueues it. then starts showing
     public void StartDialogue()
     {
         introduction = new Queue<string>();
@@ -28,7 +29,8 @@ public class TextManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-
+    //gets the next sentence and starts coroutine to start typing it. 
+    // if there are no more sentences, ends dialogue
     public void DisplayNextSentence()
     {
         AudioManager.instance.PlaySFX("UISelect");
@@ -48,7 +50,7 @@ public class TextManager : MonoBehaviour
         }
     }
 
-
+    //types each letter in the sentence. when over, informs of it with a bool
     IEnumerator TypeSentence(string sentence)
     {
         intro.text = "";
@@ -61,7 +63,7 @@ public class TextManager : MonoBehaviour
         typingOver = true;
     }
 
-
+    //when ending, stops coroutines and tells UIManager to get to the next screen
     private void EndDialogue()
     {
         StopAllCoroutines();

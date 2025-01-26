@@ -17,6 +17,7 @@ public class LifeSystem : MonoBehaviour
 
     public float Lifes { get => lifes; set => lifes = value; }
 
+    //on start, gets the sprite renderer of its game object
     private void Start()
     {
         myImage = this.gameObject.GetComponent<SpriteRenderer>();
@@ -24,6 +25,9 @@ public class LifeSystem : MonoBehaviour
         colorChangesCounter = 6;
     }
 
+    //manages visual feedback, plays damage and sends to manage death if necessary 
+    //also manages untouchableness for the player when showing visual feedback
+    //last, updates life on hud
     public void TakeDamage(float damage)
     {
         if (this.gameObject.CompareTag("PlayerHitbox"))
@@ -52,6 +56,11 @@ public class LifeSystem : MonoBehaviour
         }
     }
 
+    //for the player, starts youlost screen
+    //for enemies, manages the dropping system 
+    //also, for bats and slimes, informs spawner
+    // for the ghoul, manages the music, bools and sfx after its death
+    //last, starts death animation
     private void DeathManagement()
     {
         if (this.gameObject.CompareTag("PlayerHitbox"))
@@ -88,6 +97,8 @@ public class LifeSystem : MonoBehaviour
         }
     }
 
+    //visual feedback for damage. sets differences for player and enemies (untouchable system)
+    // changes from red to white the sprite renderer
     IEnumerator ColorVisualFeedback()
     {
         if (this.gameObject.TryGetComponent(out Player player))

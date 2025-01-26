@@ -11,6 +11,7 @@ public class FireBall : MonoBehaviour
 
     [SerializeField] private float timer;
 
+    //on start, gets self rigidbody and sets direction and force of the fireball
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,7 +19,7 @@ public class FireBall : MonoBehaviour
         timer = 0f;
     }
 
-
+    //self destroy logic
     void Update()
     {
         timer += Time.deltaTime;
@@ -28,6 +29,7 @@ public class FireBall : MonoBehaviour
         }
     }
 
+    //damage to the player and self destroy logic
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerHitbox"))

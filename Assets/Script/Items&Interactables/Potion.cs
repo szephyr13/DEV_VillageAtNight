@@ -8,11 +8,14 @@ public class Potion : MonoBehaviour, IInteractuable
     [SerializeField] private Player player;
     [SerializeField] private float lifeRestoring;
 
+    //gets the player
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
     }
 
+    //restores defined quantity of life points for the player.
+    // + sound, hud and text. then, destroys.
     public void Interact()
     {
         AudioManager.instance.PlaySFX("PowerUp");

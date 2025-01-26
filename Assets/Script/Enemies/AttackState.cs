@@ -18,6 +18,7 @@ public class AttackState : State<EnemyController>
 
     public float AttackDamage { get => attackDamage; set => attackDamage = value; }
 
+    // when entering this state, timer sets at limit, gets self-rigidbody and sets the player as target
     public override void OnEnterState(EnemyController controller)
     {
         base.OnEnterState(controller);
@@ -26,6 +27,9 @@ public class AttackState : State<EnemyController>
         target = FindObjectOfType<Player>().transform;
     }
 
+    // every update, the enemy tries to be in the same position as the player (bats on xy axis, slime only on x axis)
+    // - if it gets too far, changes to chase mode
+    // - always focusing on destination (next method)
     public override void OnUpdateState()
     {
         timer += Time.deltaTime;
@@ -54,6 +58,7 @@ public class AttackState : State<EnemyController>
         FocusOnDestination(); 
     }
 
+    //looks at player taking only as reference the x axis. 
     private void FocusOnDestination()
     {
         if (target.position.x > transform.position.x)
@@ -66,12 +71,14 @@ public class AttackState : State<EnemyController>
         }
     }
 
+    //when exiting the state, timer turns 0 and stops attack animation
     public override void OnExitState()
     {
         timer = 0f;
         anim.SetBool("attack", false);
     }
 
+    //makes the player take damage if both colliders touch
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Player player))

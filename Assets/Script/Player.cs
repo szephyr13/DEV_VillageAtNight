@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
+    //sets all bools on false and gets lifes, animator and rigidbody
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
 
 
 
-    // Update is called once per frame
     void Update()
     {
         MovementLogic();
@@ -61,6 +60,7 @@ public class Player : MonoBehaviour
         AttackAnimation();
     }
 
+    //updates the color of the slider that represents life on the hud
     public void UpdateLifes(float lifes)
     {
         lifeUI.GetComponent<Slider>().value = lifes;
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    //sets attack animation on input
     private void AttackAnimation()
     {
         if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.X))
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //executed by animation event
+    //executed by animation event after the animation input (checks if does damage to an enemy)
     private void Attack()
     {
         AudioManager.instance.PlaySFX("KunoichiAttack");
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    //jump with sfx and animation and double jump when able.
     private void JumpingLogic()
     {
         if (Input.GetKeyDown(KeyCode.Space) && OnTheFloor())
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //checks if player is on the floor
+    //checks if player is on the floor and if they can jump
     private bool OnTheFloor()
     {
         bool floor = Physics2D.Raycast(feetPosition.position, Vector3.down, maxNearFloor, whatIsJumpable);
@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
     }
 
 
+    //changes place and animation when changing the x position by input
     private void MovementLogic()
     {
         inputH = Input.GetAxisRaw("Horizontal");
@@ -166,11 +167,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    //debug option for checking the attack scope
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(attackPoint.position, attackRadius);
     }
 
+    //manages events (boss and won) and interacting with items or doors
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("BossEvent"))

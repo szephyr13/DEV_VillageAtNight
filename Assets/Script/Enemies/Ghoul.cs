@@ -12,6 +12,7 @@ public class Ghoul : MonoBehaviour
     private Vector3 movementDirection;
     private float timer;
 
+    // inicializes variables
     private void Start()
     {
         target = null;
@@ -19,6 +20,10 @@ public class Ghoul : MonoBehaviour
         timer = 0f;
     }
 
+    //when the player is detected by the ghoul, 
+    // - starts timer, 
+    // - focus on the player (another method) 
+    // - sets+makes move on x, clamping it because its movement is kinematic
     private void Update()
     {
         if (target)
@@ -35,7 +40,8 @@ public class Ghoul : MonoBehaviour
             transform.position = new Vector3(clampedX, transform.position.y, 0);
         }
     }
-    //called by animator
+
+    //called by animator - changes bool on player to make it possible to open the door - then destroys itself.
     private void DestroyBoss()
     {
         if(target.TryGetComponent(out Player player))
@@ -46,6 +52,7 @@ public class Ghoul : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    //looks at player taking only as reference the x axis. 
     private void FocusOnDestination()
     {
         if (target.position.x > transform.position.x)
@@ -58,6 +65,7 @@ public class Ghoul : MonoBehaviour
         }
     }
 
+    //corroutine to make the boss presentation (groar and then music)
     IEnumerator BossMusic()
     {
         yield return new WaitForSeconds(0.2f);
@@ -67,6 +75,7 @@ public class Ghoul : MonoBehaviour
 
     }
 
+    //when the player is detected, starts the boss music coroutine and sets the player as the target
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerDetection"))
@@ -76,6 +85,7 @@ public class Ghoul : MonoBehaviour
         }
     }
 
+    //when colliding, the player gets damage
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerHitbox"))

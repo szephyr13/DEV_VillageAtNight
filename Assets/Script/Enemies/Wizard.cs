@@ -9,19 +9,20 @@ public class Wizard : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     private Animator anim;
 
-    // Start is called before the first frame update
+    //gets its animator component on start
     void Start()
     {
         anim = GetComponent<Animator>(); 
     }
 
 
-    //called by animator
+    //called by animator (instantiates fireball)
     private void fireBallLaunching()
     {
         Instantiate(fireBall, spawnPoint.position, transform.rotation);
     }
 
+    //when player enters on detection layer, starts attack animation
     private void OnTriggerEnter2D(Collider2D collision)
     {
         target = collision.transform;
@@ -31,6 +32,7 @@ public class Wizard : MonoBehaviour
         }
     }
 
+    //when player exits the trigger, stops attack animation
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerDetection"))

@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         UIManagement();
     }
 
+    //manages the input reading depending on the game mode
     private void UIManagement()
     {
         if (gameMode == 0) //MAIN MENU
@@ -89,11 +90,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //shows text in the ui (for recollected items)
     public void showUIText(string text)
     {
         StartCoroutine(textInterface(text));
     }
 
+    //coroutine complementing showUItext, making the text disappear
     private IEnumerator textInterface(string text)
     {
         screenMessage.text = text;
@@ -102,7 +105,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-
+    //resets frequency filter, game mode and scene
     public void ResetGame()
     {
         AudioManager.instance.PlaySFX("UISelect");
@@ -114,9 +117,10 @@ public class UIManager : MonoBehaviour
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameMode = 0;
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
 
+    //lowpass filter, sets menu active and stops time
     public void PauseMenu()
     {
         AudioManager.instance.PlaySFX("UISelect");
@@ -125,6 +129,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    //stops lowpass, sets pause menu inactive, restores time flow
     public void ExitPause()
     {
         AudioManager.instance.PlaySFX("UISelect");
@@ -144,6 +149,7 @@ public class UIManager : MonoBehaviour
         introManager.StartDialogue();
     }
 
+    //sets next screens depending on the text mode it comes from
     public void NextScreen()
     {
         if (gameMode == 1)
@@ -156,6 +162,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //starts game from the intro screen
     private void GameFromIntro()
     {
         AudioManager.instance.PlayBGM("Game");
@@ -181,6 +188,7 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
+    //opens the losing screen, stoping music and pausing time
     public void YouLost()
     {
         AudioManager.instance.StopMusic();
@@ -189,6 +197,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    //shows the ending text, stopping time and music
     public void YouWon()
     {
         AudioManager.instance.StopMusic();
